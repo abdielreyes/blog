@@ -1,11 +1,11 @@
-  version: '3.5'
+version: '3.5'
 services:
   dev:
     image: ruby:3.0
     build:
       context: .
       dockerfile: ./docker/dev/Dockerfile
-    container_name: chat_challenge_web
+    container_name: blog
     hostname: test.host
     environment:
       RAILS_ENV: development
