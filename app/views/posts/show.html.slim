@@ -9,7 +9,6 @@ h1
 p
   = @post.body
 
--if can? :read, @post
-  = link_to 'Edit', edit_post_path(@post)
-  |&nbsp;|&nbsp;
-  = link_to 'Back', posts_path
+= link_to 'Edit', edit_post_path(@post)
+|&nbsp;|&nbsp;
+= link_to 'Back', posts_path

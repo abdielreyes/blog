@@ -16,7 +16,16 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit; end
+  def edit
+    respond_to do |format|
+      if can? :update, @post
+        format.html { redirect_to @post, notice:"Post was succesfully edited" }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to posts_path, notice: "You dont have enough permissions" }
+        format.json { head :no_content }
+    end
+  end
 
   # POST /posts or /posts.json
   def create
@@ -35,13 +44,15 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+    if can? :update, @post
+      respond_to do |format|
+        if @post.update(post_params)
+          format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+          format.json { render :show, status: :ok, location: @post }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

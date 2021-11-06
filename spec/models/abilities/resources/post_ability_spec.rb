@@ -38,7 +38,7 @@ describe Abilities::Resources::PostAbility do
       end
     end
 
-    it 'does not allow user to [create delete update] post' do
+    it 'does not allow user to [create delete update edit] post' do
       denied_permissions.each do |permission|
         expect(ability.can?(permission, post)).to be_falsey
       end

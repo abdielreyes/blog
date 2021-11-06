@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validate :password_complexity
   
   #Delegations
-  delegate :can? to: :ability
+  delegate :can?, to: :ability
 
   #Methods
   def password_complexity
