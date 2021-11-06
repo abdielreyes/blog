@@ -13,7 +13,11 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :password, length: { minimum: 8, maximum: 30 }
   validate :password_complexity
+  
+  #Delegations
+  delegate :can? to: :ability
 
+  #Methods
   def password_complexity
     return if password.nil?
 
@@ -30,5 +34,8 @@ class User < ApplicationRecord
 
   def followed_posts
     Post.where(user: followed_users.to_a.push(self))
+  end
+  def ability
+    Ability.new(user)
   end
 end

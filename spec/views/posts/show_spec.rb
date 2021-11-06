@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe 'posts/show.html.slim' do
-  let(:post) { create :post }
-
+  let(:user) { create :user }
+  let(:post) { create :post, user: user }
   before do
     assign(:post, post)
     render
@@ -14,5 +14,7 @@ describe 'posts/show.html.slim' do
   it('displays body'){
     expect(rendered).to have_selector('p', text: post.body)
   }
-
+  #it('displays username')do
+  #  expect(rendered).to have_selector('p', text: post.username)
+  #end
 end
