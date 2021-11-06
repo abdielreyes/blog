@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show]
-  before_action :set_user_post, only: %i[edit update destroy]
+  before_action :set_user_post, only: %i[edit update destroy create]
 
   # GET /posts or /posts.json
   def index
@@ -24,6 +24,7 @@ class PostsController < ApplicationController
       else
         format.html { redirect_to posts_path, notice: "You dont have enough permissions" }
         format.json { head :no_content }
+      end
     end
   end
 

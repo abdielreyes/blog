@@ -4,10 +4,8 @@ tr id="post-#{post.id}"
         td 
           = post.body
         td
-          -if can? :edit, @post
           = link_to 'Edit', edit_post_path(post)
         td
-          -if can? :destroy, @post
           = link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
 
 
