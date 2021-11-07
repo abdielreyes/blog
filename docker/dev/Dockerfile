@@ -15,7 +15,7 @@ EXPOSE 3000
 
 # Install nodejs
 RUN apt -qq update && apt -q -y install libv8-dev && apt -q -y install nodejs
-RUN apt install npm
+RUN apt -y install npm
 
 # Install yarn
 RUN npm install --global yarn -y
